@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hw_pendulum1205_CA", "hw_pendulum1205_CA\hw_pendulum1205_CA.csproj", "{0D783B37-C6E5-43EB-AAE8-B417AB5EDB54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hw_pendulum1205_FRM", "hw_pendulum1205_FRM\hw_pendulum1205_FRM.csproj", "{D046DE57-5D9F-452C-8028-4A00D13797CA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0D783B37-C6E5-43EB-AAE8-B417AB5EDB54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D783B37-C6E5-43EB-AAE8-B417AB5EDB54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D783B37-C6E5-43EB-AAE8-B417AB5EDB54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D783B37-C6E5-43EB-AAE8-B417AB5EDB54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D046DE57-5D9F-452C-8028-4A00D13797CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D046DE57-5D9F-452C-8028-4A00D13797CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D046DE57-5D9F-452C-8028-4A00D13797CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D046DE57-5D9F-452C-8028-4A00D13797CA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C6C89CAF-664D-4993-99B7-C9933DE52269}
+	EndGlobalSection
+EndGlobal
