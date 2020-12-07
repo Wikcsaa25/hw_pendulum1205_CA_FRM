@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -109,12 +110,23 @@ namespace hw_pendulum1205_FRM
 
         private void addURL_Click(object sender, EventArgs e)
         {
-            string value = "Document 1";
+            string reg = @"https:\/\/youtu.be\/([a-zA-Z0-9]){11}";
+            string value = "https://youtu.be/";
             if (Tmp.InputBox("Tiny youtube url hozzáadása", "Adja meg a tiny youtube url-t:", ref value) == DialogResult.OK)
             {
-                
+                if (Regex.IsMatch(value, reg))
+                {
+                    //MessageBox.Show(value.Remove(0, 17));
+                    connection.Open();
+                    SqlDataReader command = new SqlCommand($"update Tracks set url = '{value.Remove(0, 17)}' where title like '{dgwTitles.SelectedRows[0].Cells[0].Value.ToString()}'", connection).ExecuteReader();
+                    
+                    connection.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Nem megfelelő link!");
+                }
             }
-            else MessageBox.Show("Nem megfelelő link!");
         }
     }
     public class Tmp
