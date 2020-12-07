@@ -19,6 +19,7 @@ namespace hw_pendulum1205_FRM
         {
             InitializeComponent();
             DictionaryUp();
+            
         }
         static Dictionary<string, string> lookup = new Dictionary<string, string>();
         private void DictionaryUp()
@@ -116,7 +117,6 @@ namespace hw_pendulum1205_FRM
             {
                 if (Regex.IsMatch(value, reg))
                 {
-                    //MessageBox.Show(value.Remove(0, 17));
                     connection.Open();
                     SqlDataReader command = new SqlCommand($"update Tracks set url = '{value.Remove(0, 17)}' where title like '{dgwTitles.SelectedRows[0].Cells[0].Value.ToString()}'", connection).ExecuteReader();
                     connection.Close();
@@ -127,21 +127,58 @@ namespace hw_pendulum1205_FRM
                 }
             }
         }
-
-        private void button3_Click(object sender, EventArgs e)
+        Form2 frm;
+        public void button3_Click(object sender, EventArgs e)
         {
+            frm = new Form2();
+            frm.FormClosing += Frm_FormClosing;
+            frm.Show();
             connection.Open();
-            SqlDataReader command = new SqlCommand($"select * from Tracks where title like 'dgwTitles.SelectedRows[0].Cells[0].Value.ToString()'", connection).ExecuteReader();
-            object thg = "";
+            SqlDataReader command = new SqlCommand($"select * from Tracks where title like '{dgwTitles.SelectedRows[0].Cells[0].Value}';", connection).ExecuteReader();
             while (command.Read())
             {
-                thg = $"{command[0]} {command[1]} {command[2]} {command[3]}";
+                frm.TBTitle.Text = command[1].ToString();
+                frm.TBLength.Text = command[2].ToString();
+                frm.TBId.Text = command[3].ToString();
+                frm.TBUrl.Text = command[4].ToString();
             }
             connection.Close();
+        }
+
+        public void Frm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Biztosan menti a változásokat?", caption: CaptionButton.Close.ToString(), buttons: MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                connection.Open();
+                SqlDataReader command = new SqlCommand($"update Tracks set title = '{frm.TBTitle.Text}', length = '{frm.TBLength.Text}', url = '{frm.TBUrl.Text}' where title like '{dgwTitles.SelectedRows[0].Cells[0].Value}'; ", connection).ExecuteReader();
+                connection.Close();
+                connection.Open();
+                dgwTitles.Rows.Clear();
+                SqlDataReader command1 = new SqlCommand($"select Tracks.title, Tracks.length from Albums , Tracks where Albums.id = Tracks.album and Albums.title like '{cBAlbum.SelectedItem}';", connection).ExecuteReader();
+                while (command1.Read())
+                {
+                    dgwTitles.Rows.Add(command1[0], command1[1]);
+                }
+                connection.Close();
+                connection.Open();
+                SqlDataReader command2 = new SqlCommand($"select Albums.relase, Tracks.length from Albums , Tracks where Albums.id = Tracks.album and Albums.title like '{cBAlbum.SelectedItem}';", connection).ExecuteReader();
+                int seconds = 0;
+                string date = "";
+                while (command2.Read())
+                {
+                    seconds += (int)Math.Round(TimeSpan.Parse(command2[1].ToString()).TotalSeconds);
+                    date = command2[0].ToString();
+                }
+                richTextBox.Text = $"Kiadási dátum: " + DateTime.Parse(date).ToString("yyyy. MMMM dd.") + "\nAlbum hossza: " + TimeSpan.FromSeconds(seconds).ToString();
+                
+                connection.Close();
+            }
         }
     }
     public class Tmp
     {
+
         public static DialogResult InputBox(string title, string promptText, ref string value)
         {
             Form form = new Form();
