@@ -11,16 +11,9 @@ namespace hw_pendulum1205_CA
     {
         static void Main(string[] args)
         {
-            Read();
-            Write();
+            ReadWrite();
         }
-
-        private static void Write()
-        {
-
-        }
-
-        private static void Read()
+        private static void ReadWrite()
         {
             using (StreamWriter sw = new StreamWriter("pendulum.sql"))
             {
