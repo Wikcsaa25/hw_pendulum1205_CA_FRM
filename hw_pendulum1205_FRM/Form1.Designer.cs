@@ -38,12 +38,12 @@ namespace hw_pendulum1205_FRM
             this.cBAlbum = new System.Windows.Forms.ComboBox();
             this.tBSearch = new System.Windows.Forms.TextBox();
             this.dgwTitles = new System.Windows.Forms.DataGridView();
+            this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Length = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.richTextBox = new System.Windows.Forms.RichTextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.addURL = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Length = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgwTitles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
@@ -153,6 +153,22 @@ namespace hw_pendulum1205_FRM
             this.dgwTitles.TabIndex = 5;
             this.dgwTitles.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgwTitles_CellClick);
             // 
+            // Title
+            // 
+            this.Title.FillWeight = 139.0374F;
+            this.Title.HeaderText = "Title";
+            this.Title.MinimumWidth = 6;
+            this.Title.Name = "Title";
+            this.Title.ReadOnly = true;
+            // 
+            // Length
+            // 
+            this.Length.FillWeight = 60.96257F;
+            this.Length.HeaderText = "Length";
+            this.Length.MinimumWidth = 6;
+            this.Length.Name = "Length";
+            this.Length.ReadOnly = true;
+            // 
             // richTextBox
             // 
             this.richTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
@@ -193,22 +209,7 @@ namespace hw_pendulum1205_FRM
             this.button3.TabIndex = 8;
             this.button3.Text = "Edit Selected";
             this.button3.UseVisualStyleBackColor = true;
-            // 
-            // Title
-            // 
-            this.Title.FillWeight = 139.0374F;
-            this.Title.HeaderText = "Title";
-            this.Title.MinimumWidth = 6;
-            this.Title.Name = "Title";
-            this.Title.ReadOnly = true;
-            // 
-            // Length
-            // 
-            this.Length.FillWeight = 60.96257F;
-            this.Length.HeaderText = "Length";
-            this.Length.MinimumWidth = 6;
-            this.Length.Name = "Length";
-            this.Length.ReadOnly = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // pictureBox
             // 

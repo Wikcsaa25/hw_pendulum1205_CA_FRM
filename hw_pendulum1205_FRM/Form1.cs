@@ -119,7 +119,6 @@ namespace hw_pendulum1205_FRM
                     //MessageBox.Show(value.Remove(0, 17));
                     connection.Open();
                     SqlDataReader command = new SqlCommand($"update Tracks set url = '{value.Remove(0, 17)}' where title like '{dgwTitles.SelectedRows[0].Cells[0].Value.ToString()}'", connection).ExecuteReader();
-                    
                     connection.Close();
                 }
                 else
@@ -127,6 +126,18 @@ namespace hw_pendulum1205_FRM
                     MessageBox.Show("Nem megfelelő link!");
                 }
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            connection.Open();
+            SqlDataReader command = new SqlCommand($"select * from Tracks where title like 'dgwTitles.SelectedRows[0].Cells[0].Value.ToString()'", connection).ExecuteReader();
+            object thg = "";
+            while (command.Read())
+            {
+                thg = $"{command[0]} {command[1]} {command[2]} {command[3]}";
+            }
+            connection.Close();
         }
     }
     public class Tmp
