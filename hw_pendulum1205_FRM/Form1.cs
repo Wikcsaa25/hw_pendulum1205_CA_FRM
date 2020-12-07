@@ -10,6 +10,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace hw_pendulum1205_FRM
 {
@@ -33,10 +34,11 @@ namespace hw_pendulum1205_FRM
         }
 
         static string connectionString = @"Server = (localdb)\MSSQLLocalDB;" + 
-            @"AttachDbFileName=|DataDirectory|\Resources\music.mdf;";
+            @"AttachDbFileName=|DataDirectory|Resources\music.mdf;";
         static SqlConnection connection = new SqlConnection(connectionString);
         private void Form1_Load(object sender, EventArgs e)
         {
+            cBArtist.Items.Clear();
             connection.Open();
             SqlDataReader command = new SqlCommand("SELECT DISTINCT artist FROM Albums;", connection).ExecuteReader();
             while (command.Read())
@@ -57,10 +59,11 @@ namespace hw_pendulum1205_FRM
             }
             connection.Close();
         }
-
+        private List<string[]> dgwBackup = new List<string[]>();
         private void cBAlbum_SelectedIndexChanged(object sender, EventArgs e)
         {
-            pictureBox.Image = (Image)Resources.ResourceManager.GetObject(lookup[cBAlbum.SelectedItem.ToString()]);
+            if(lookup.ContainsKey(cBAlbum.SelectedItem.ToString()))
+               pictureBox.Image = (Image)Resources.ResourceManager.GetObject(lookup[cBAlbum.SelectedItem.ToString()]);
             connection.Open();
             SqlDataReader command = new SqlCommand($"select Albums.relase, Tracks.length from Albums , Tracks where Albums.id = Tracks.album and Albums.title like '{cBAlbum.SelectedItem}';", connection).ExecuteReader();
             int seconds = 0;
@@ -72,12 +75,14 @@ namespace hw_pendulum1205_FRM
             }
             richTextBox.Text = $"Kiadási dátum: " + DateTime.Parse(date).ToString("yyyy. MMMM dd.") + "\nAlbum hossza: " + TimeSpan.FromSeconds(seconds).ToString();
             dgwTitles.Rows.Clear();
+            dgwBackup.Clear();
             connection.Close();
             connection.Open();
             SqlDataReader command1 = new SqlCommand($"select Tracks.title, Tracks.length from Albums , Tracks where Albums.id = Tracks.album and Albums.title like '{cBAlbum.SelectedItem}';", connection).ExecuteReader();
             while (command1.Read())
             {
                 dgwTitles.Rows.Add(command1[0], command1[1]);
+                dgwBackup.Add(new string[] { command1[0].ToString(), command1[1].ToString() });
             }
             connection.Close();
             tBSearch.ReadOnly = false;
@@ -173,6 +178,149 @@ namespace hw_pendulum1205_FRM
                 richTextBox.Text = $"Kiadási dátum: " + DateTime.Parse(date).ToString("yyyy. MMMM dd.") + "\nAlbum hossza: " + TimeSpan.FromSeconds(seconds).ToString();
                 
                 connection.Close();
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.ShowDialog();
+            bool hasAlbum = false;
+            bool hasTracks = false;
+            int albumCount = 0;
+            int trackCount = 0;
+            bool isValid = true;
+            bool albumOrTrack = false;
+            List<string> albums = new List<string>();
+            List<string> tracks = new List<string>();
+            if(!string.IsNullOrEmpty(openFileDialog1.FileName))
+            {
+                using (StreamReader sr = new StreamReader(openFileDialog1.FileName))
+                {
+                    while (!sr.EndOfStream)
+                    {
+                        string line = sr.ReadLine();
+                        if (line == "[albums]" && !hasAlbum)
+                        {
+                            hasAlbum = true;
+                            albumOrTrack = false;
+                        }
+                        else if (line == "[tracks]" && !hasTracks)
+                        {
+                            hasTracks = true;
+                            albumOrTrack = true;
+                        }
+                        else if (albumOrTrack && IsTrackValid(line))
+                        {
+                            trackCount++;
+                            tracks.Add(line);
+                        }
+                        else if (!albumOrTrack && IsAlbumValid(line))
+                        {
+                            albumCount++;
+                            albums.Add(line);
+                        }
+                        else
+                        {
+                            isValid = false;
+                            break;
+                        }
+                    }
+                }
+                if (albumCount < 0 || trackCount < 0)
+                    isValid = false;
+
+                if (isValid)
+                {
+                    foreach (string item in albums)
+                    {
+                        string[] split = item.Split(';');
+                        using (SqlCommand cmd = new SqlCommand($"INSERT INTO Albums VALUES('{split[0]}', '{split[1]}','{split[2]}','{split[3]}')", connection))
+                        {
+                            cmd.CommandType = CommandType.Text;
+
+                            connection.Open();
+
+                            cmd.ExecuteNonQuery();
+                        }
+                        connection.Close();
+
+                    }
+                    foreach (string item in tracks)
+                    {
+                        string[] split = item.Split(';');
+                        using (SqlCommand cmd = new SqlCommand($"INSERT INTO Tracks VALUES('{split[0]}', '{split[1]}','{split[2]}','{split[3]}')", connection))
+                        {
+                            cmd.CommandType = CommandType.Text;
+
+                            connection.Open();
+
+                            cmd.ExecuteNonQuery();
+                        }
+                        connection.Close();
+
+                    }
+                    
+                }
+                else
+                {
+                    MessageBox.Show("A fájl nem helyes formátumú!");
+                }
+            }
+            
+        }
+        private bool IsAlbumValid(string album)
+        {
+            try
+            {
+                string[] split = album.Split(';');
+                if (split.Length != 4)
+                {
+                    return false;
+                }
+                DateTime.Parse(split[3]);
+                if (split[0].Length != 4) return false;
+                if (split[1].Length > 255) return false;
+                if (split[2].Length > 255) return false;
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
+        private bool IsTrackValid(string track)
+        {
+            try
+            {
+                string[] split = track.Split(';');
+                if (split.Length != 4) return false;
+                if (split[0].Length > 255) return false;
+                TimeSpan.Parse(split[1]);
+                if (split[2].Length != 4) return false;
+                if (split[3].Length > 30) return false;
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
+
+        private void tBSearch_TextChanged(object sender, EventArgs e)
+        {
+            List<string[]> results = new List<string[]>();
+            foreach (string[] item in dgwBackup)
+            {
+                if(item[0].ToLower().StartsWith(tBSearch.Text.ToLower()))
+                {
+                    results.Add(item);
+                }
+            }
+            dgwTitles.Rows.Clear();
+            foreach (string[] item in results)
+            {
+                dgwTitles.Rows.Add(item[0], item[1]);
             }
         }
     }
