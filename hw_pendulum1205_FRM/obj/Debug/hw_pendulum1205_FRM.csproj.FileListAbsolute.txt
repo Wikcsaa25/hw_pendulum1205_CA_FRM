@@ -1,0 +1,13 @@
+C:\Users\Viki\Documents\VisualStudioProjects\hw_pendulum1205_CA\hw_pendulum1205_FRM\bin\Debug\Resources\music.mdf
+C:\Users\Viki\Documents\VisualStudioProjects\hw_pendulum1205_CA\hw_pendulum1205_FRM\bin\Debug\Resources\music_log.ldf
+C:\Users\Viki\Documents\VisualStudioProjects\hw_pendulum1205_CA\hw_pendulum1205_FRM\bin\Debug\hw_pendulum1205_FRM.exe.config
+C:\Users\Viki\Documents\VisualStudioProjects\hw_pendulum1205_CA\hw_pendulum1205_FRM\bin\Debug\hw_pendulum1205_FRM.exe
+C:\Users\Viki\Documents\VisualStudioProjects\hw_pendulum1205_CA\hw_pendulum1205_FRM\bin\Debug\hw_pendulum1205_FRM.pdb
+C:\Users\Viki\Documents\VisualStudioProjects\hw_pendulum1205_CA\hw_pendulum1205_FRM\obj\Debug\hw_pendulum1205_FRM.csprojAssemblyReference.cache
+C:\Users\Viki\Documents\VisualStudioProjects\hw_pendulum1205_CA\hw_pendulum1205_FRM\obj\Debug\hw_pendulum1205_FRM.Form1.resources
+C:\Users\Viki\Documents\VisualStudioProjects\hw_pendulum1205_CA\hw_pendulum1205_FRM\obj\Debug\hw_pendulum1205_FRM.Properties.Resources.resources
+C:\Users\Viki\Documents\VisualStudioProjects\hw_pendulum1205_CA\hw_pendulum1205_FRM\obj\Debug\hw_pendulum1205_FRM.csproj.GenerateResource.cache
+C:\Users\Viki\Documents\VisualStudioProjects\hw_pendulum1205_CA\hw_pendulum1205_FRM\obj\Debug\hw_pendulum1205_FRM.csproj.CoreCompileInputs.cache
+C:\Users\Viki\Documents\VisualStudioProjects\hw_pendulum1205_CA\hw_pendulum1205_FRM\obj\Debug\hw_pendulum1205_FRM.exe
+C:\Users\Viki\Documents\VisualStudioProjects\hw_pendulum1205_CA\hw_pendulum1205_FRM\obj\Debug\hw_pendulum1205_FRM.pdb
+C:\Users\Viki\Documents\VisualStudioProjects\hw_pendulum1205_CA\hw_pendulum1205_FRM\obj\Debug\hw_pendulum1205_FRM.Form2.resources

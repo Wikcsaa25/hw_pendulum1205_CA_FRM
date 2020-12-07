@@ -1,0 +1,42 @@
+[albums]
+hlg1;Hooligans;Vírus;2005-03-23
+hlg2;Hooligans;Privát Mennyország;2008-05-06
+hlg3;Hooligans;Igaz történet;2016-06-7
+[tracks]
+Vírus;2:56;hlg1;null
+Szabadon;4:24;hlg1;null
+Elkábít;3:18;hlg1;null
+Minden út;4:09;hlg1;null
+Nőben a boldogság;3:32;hlg1;CepAx1vBN0c
+Menj tovább;3:43;hlg1;BrpRNk3ZqIw
+Szex és KV;3:10;hlg1;null
+Ami élet;4:15;hlg1;null
+Villanycowboy;2:07;hlg1;null
+Tele van a zsák;4:17;hlg1;null
+Ez a kemény;3:12;hlg1;null
+Vihet a végtelen;3:27;hlg1;null
+Intro;2:00;hlg2;null
+Éltem, voltam...;3:20;hlg2;null
+Ringass el!;3:36;hlg2;P1IqIS8Gq5E
+A zene nem eladó;2:53;hlg2;null
+Eljátszott gyémánt;3:18;hlg2;8HXbvnoMByI
+Van az úgy;3:14;hlg2;null
+Minden szép;3:16;hlg2;null
+Fílórájt;3:08;hlg2;null
+Csont nélkül;3:30;hlg2;null
+Vagyok, aki voltam;3:19;hlg2;null
+Privát mennyország;3:37;hlg2;null
+Ez a nap;4:43;hlg2;null
+Outro;0:57;hlg2;null
+Intro;2:04;hlg3;null
+Másképp;2:43;hlg3;null
+Magány-terület;3:24;hlg3;null
+Élvezd a csendet;3:10;hlg3;null
+Seholország;3:44;hlg3;null
+Éljem túl;3:18;hlg3;null
+Mondj egy imát;3:48;hlg3;null
+Szeress, ne háborúzz;3:23;hlg3;null
+Apám;3:46;hlg3;7olDUr9MN2Y
+Holtverseny;2:54;hlg3;null
+Igaz történet;6:03;hlg3;null
+Tartson örökké (Lotfi Begi Remix);3:38;hlg3;null

@@ -1,0 +1,7 @@
+C:\Users\Viki\Documents\VisualStudioProjects\hw_pendulum1205_CA\hw_pendulum1205_CA\bin\Debug\hw_pendulum1205_CA.exe.config
+C:\Users\Viki\Documents\VisualStudioProjects\hw_pendulum1205_CA\hw_pendulum1205_CA\bin\Debug\hw_pendulum1205_CA.exe
+C:\Users\Viki\Documents\VisualStudioProjects\hw_pendulum1205_CA\hw_pendulum1205_CA\bin\Debug\hw_pendulum1205_CA.pdb
+C:\Users\Viki\Documents\VisualStudioProjects\hw_pendulum1205_CA\hw_pendulum1205_CA\obj\Debug\hw_pendulum1205_CA.csprojAssemblyReference.cache
+C:\Users\Viki\Documents\VisualStudioProjects\hw_pendulum1205_CA\hw_pendulum1205_CA\obj\Debug\hw_pendulum1205_CA.csproj.CoreCompileInputs.cache
+C:\Users\Viki\Documents\VisualStudioProjects\hw_pendulum1205_CA\hw_pendulum1205_CA\obj\Debug\hw_pendulum1205_CA.exe
+C:\Users\Viki\Documents\VisualStudioProjects\hw_pendulum1205_CA\hw_pendulum1205_CA\obj\Debug\hw_pendulum1205_CA.pdb
